@@ -34,6 +34,8 @@ requirements:
     - shapely >=2.0.1
 
 test:
+  source_files:
+    - spaghetti/tests
   imports:
     - spaghetti
     - spaghetti.analysis
@@ -42,9 +44,11 @@ test:
   commands:
     - pip check
     - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+    - pytest -vv spaghetti/tests
   requires:
     - python
     - pip
+    - pytest
 
 about:
   home: https://pysal.org/spaghetti
