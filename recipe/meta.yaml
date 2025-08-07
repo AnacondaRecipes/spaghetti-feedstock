@@ -39,19 +39,19 @@ test:
     - spaghetti.analysis
     - spaghetti.network
     - spaghetti.util
-  # --> comment from @ocefpaf <-- see conda-forge/libpysal-feedstock#8
-  # pip check is not smart enough to know that an import name is not the package name :-(
-  # commands:
-  #  - pip check
-  # requires:
-  #  - pip
+  commands:
+    - pip check
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+  requires:
+    - python
+    - pip
 
 about:
   home: https://pysal.org/spaghetti
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE.txt
-  summary: SPAtial GrapHs: nETworks, Topology, & Inference
+  summary: SPAtial GrapHs - nETworks, Topology, & Inference
   description: |
     Spaghetti is an open-source Python library for the analysis
     of network-based spatial data. Originating from the network 
