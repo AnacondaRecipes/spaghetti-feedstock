@@ -12,6 +12,9 @@ source:
 build:
   skip: true  # [py<310]
   number: 1
+  # Setting the version manually, otherwise despite the version assert and pip check in this recipe,
+  # other packages which depend on it will fail pip check with "PACKAGE has requirement spaghetti>=1.7.4, but you
+  # have spaghetti 0.0.0". This occurs since version 1.7.6
   script_env:
     - SETUPTOOLS_SCM_PRETEND_VERSION={{ version }}
   script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vvv
